@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @RequestMapping
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
     @Modifying
+    //@Query solicita informações do banco de dados e retorna uma tabelaou conjunto delas
     @Query("UPDATE Medico medico " +
     "SET medico.excluido =:dataExcluido " +
     "WHERE medico.id = :medico")

@@ -1,7 +1,6 @@
 package br.com.consultorio.service;
 
 import br.com.consultorio.entity.Convenio;
-import br.com.consultorio.entity.Especialidade;
 import br.com.consultorio.repository.ConvenioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,6 @@
 package br.com.consultorio.service;
 
-import br.com.consultorio.entity.Especialidade;
 import br.com.consultorio.entity.Medico;
-import br.com.consultorio.repository.EspecialidadeRepository;
 import br.com.consultorio.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
