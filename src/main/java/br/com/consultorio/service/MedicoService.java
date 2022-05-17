@@ -19,7 +19,6 @@ public class MedicoService {
         return this.medicoRepository.findById(id);
     }
 
-
     public Page<Medico> listAll(Pageable pageable){
         return this.medicoRepository.findAll(pageable);
     }

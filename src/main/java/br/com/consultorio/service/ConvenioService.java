@@ -16,7 +16,7 @@ public class ConvenioService {
     @Autowired
     private ConvenioRepository convenioRepository;
 
-    public Optional<Convenio> findBuId(Long id){
+    public Optional<Convenio> findById(Long id){
         return this.convenioRepository.findById(id);
     }
     public Page<Convenio> listAll(Pageable pageable){

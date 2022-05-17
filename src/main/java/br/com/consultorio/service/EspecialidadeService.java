@@ -48,7 +48,6 @@ public class EspecialidadeService {
             throw new RuntimeException();
         }
     }
-
     /**
      *
      * @param especialidade
@@ -57,7 +56,6 @@ public class EspecialidadeService {
     public void insert(Especialidade especialidade){
         this.especialidadeRepository.save(especialidade);
     }
-
     /**
      *
      * @param id
