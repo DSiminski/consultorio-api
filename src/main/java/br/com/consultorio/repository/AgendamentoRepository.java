@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 @RequestMapping
@@ -20,4 +21,15 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>{
     public void updateStatus(
             @Param("dataExcluido") LocalDateTime dataExcluido,
             @Param("agendamento") Long idAgendamento);
+    @Query("SELECT Agendamento FROM Agendamento " +
+            "WHERE (:datade BETWEEN Agendamento.dataDe AND Agendamento.dataAte " +
+            "OR :dataAte BETWEEN Agendamento.dataDe AND Agendamento.dataAte) " +
+            "AND (Agendamento.medico = :medico " +
+            "OR Agendamento.paciente = :paciente)")
+    public List<Agendamento> conflitoMedicoPaciente(
+            @Param("datade") LocalDateTime dataDe,
+            @Param("dataate") LocalDateTime dataAte,
+            @Param("medico") Long idMedico,
+            @Param("paciente") Long idPaciente
+    );
 }

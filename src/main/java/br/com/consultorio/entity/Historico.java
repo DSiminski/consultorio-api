@@ -1,9 +1,6 @@
 package br.com.consultorio.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @ToString
-
+@AllArgsConstructor
 @Table(schema = "public", name = "historicos" )
 
 public class Historico extends AbstractEntity{
