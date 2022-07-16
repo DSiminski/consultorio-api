@@ -7,13 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+@CrossOrigin(origins = "http://localhost:3000" )
 @Controller
 @RequestMapping("/api/medicos")
 public class MedicoController {
     @Autowired
     MedicoService medicoService;
 
-    @GetMapping("/api/medico")
+    @GetMapping("/{idMedico}")
     public ResponseEntity<Medico> findById(
             @PathVariable("idMedico") Long idMedico
     ) {
@@ -47,13 +49,13 @@ public class MedicoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/status/{idMedico}")
+    @PutMapping("/disable/{idMedico}")
     public ResponseEntity<?> updateStatus(
             @RequestBody Medico medico,
             @PathVariable Long idMedico
     ){
         try {
-            this.medicoService.update(idMedico, medico);
+            this.medicoService.updateStatus(idMedico, medico);
             return ResponseEntity.ok().body("Medico desabilitado com sucesso!");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

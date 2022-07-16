@@ -1,6 +1,8 @@
 package br.com.consultorio.repository;
 
 import br.com.consultorio.entity.Agendamento;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,20 +18,27 @@ import java.util.List;
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>{
     @Modifying
     @Query("UPDATE Agendamento agendamento " +
-            "SET agendamento.excluido =:dataExcluido "+
-            "WHERE agendamento.id = :agendamento ")
+            "SET agendamento.ativo = false " +
+            "WHERE agendamento.id = :agendamento")
     public void updateStatus(
-            @Param("dataExcluido") LocalDateTime dataExcluido,
-            @Param("agendamento") Long idAgendamento);
-    @Query("SELECT Agendamento FROM Agendamento " +
-            "WHERE (:datade BETWEEN Agendamento.dataDe AND Agendamento.dataAte " +
-            "OR :dataAte BETWEEN Agendamento.dataDe AND Agendamento.dataAte) " +
-            "AND (Agendamento.medico = :medico " +
-            "OR Agendamento.paciente = :paciente)")
+            @Param("agendamento") Long idAgenda);
+
+    @Query("FROM Agendamento agendamento " +
+            "WHERE (:datade BETWEEN agendamento.dataDe AND agendamento.dataAte " +
+            "OR :dataAte BETWEEN agendamento.dataDe AND agendamento.dataAte) " +
+            "AND (agendamento.medico.id = :medico OR agendamento.paciente.id = :paciente) " +
+            "AND agendamento.id <> :agendamento")
     public List<Agendamento> conflitoMedicoPaciente(
+            @Param("agendamento") Long idAgendamento,
             @Param("datade") LocalDateTime dataDe,
-            @Param("dataate") LocalDateTime dataAte,
+            @Param("dataAte") LocalDateTime dataAte,
             @Param("medico") Long idMedico,
             @Param("paciente") Long idPaciente
+    );
+    @Query("FROM Agendamento agendamento " +
+            "WHERE extract(day from agendamento.dataDe) = extract(day from now()) " +
+            "AND extract(day from agendamento.dataAte) = extract(day from now())")
+    public Page<Agendamento> findAllToday(
+            Pageable pageable
     );
 }

@@ -36,4 +36,10 @@ public class Medico extends Pessoa{
     @Setter
     @Column(name = "consultorio", nullable = true, length = 50)
     private String consultorio;
+
+    @Getter
+    @Setter
+    @Digits(integer = 5, fraction = 3)
+    @Column(name = "valor")
+    private BigDecimal valor;
 }

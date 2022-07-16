@@ -46,9 +46,7 @@ public class PacienteService {
     @Transactional
     public void updateStatus(Long id, Paciente paciente){
         if (id == paciente.getId()) {
-            this.pacienteRepository.updateStatus(
-                    LocalDateTime.now(),
-                    paciente.getId());
+            this.pacienteRepository.updateStatus(paciente.getId());
         }
         else {
             throw new RuntimeException();
@@ -66,12 +64,12 @@ public class PacienteService {
             if (paciente.getDataVencimento() == null) {
                 throw new RuntimeException("Tipo Atendimento = Convenio. Data de Vencimento do Cartão não informado");
             }
-            if (paciente.getDataVencimento().compareTo(LocalDateTime.now()) > 0) {
+            if (paciente.getDataVencimento().isBefore(LocalDateTime.now()) ) {
                 throw new RuntimeException("Tipo Atendimento = Convenio. Data de Vencimento do Cartão não expirado");
             }
         }
 
-        if(paciente.getTipoAtendimento().equals(TipoAtendimento.plano)){
+        if(paciente.getTipoAtendimento().equals(TipoAtendimento.particular)){
             paciente.setConvenio(null);
             paciente.setNumeroCartaoConvenio(null);
             paciente.setDataVencimento(null);

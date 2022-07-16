@@ -15,9 +15,8 @@ import java.time.LocalDateTime;
 public interface ConvenioRepository extends JpaRepository<Convenio, Long> {
     @Modifying
     @Query("UPDATE Convenio convenio " +
-    "SET convenio.excluido =:dataExcluido "+
+    "SET convenio.ativo = false "+
     "WHERE convenio.id = :convenio")
     public void updateStatus(
-            @Param("dataExcluido") LocalDateTime dataExcluido,
             @Param("convenio")Long idConvenio);
 }

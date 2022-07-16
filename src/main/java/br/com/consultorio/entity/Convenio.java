@@ -1,10 +1,7 @@
 package br.com.consultorio.entity;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -13,7 +10,6 @@ import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
-@ToString
 
 @Table(schema = "public", name = "convenios" )
 
@@ -29,10 +25,5 @@ public class Convenio extends AbstractEntity {
     @Digits(integer = 5, fraction = 3)
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
-
-    @Getter
-    @Setter
-    @Column(name = "numero-cartao-convenio", nullable = false, length = 50)
-    private String numero_cartao_convenio;
 
 }

@@ -43,7 +43,7 @@ public class SecretariaService {
     @Transactional
     public void updateStatus(Long id, Secretaria secretaria){
         if (id == secretaria.getId()) {
-            this.secretariaRepository.updateStatus(LocalDateTime.now(), secretaria.getId());
+            this.secretariaRepository.updateStatus(secretaria.getId());
         }
         else {
             throw new RuntimeException();

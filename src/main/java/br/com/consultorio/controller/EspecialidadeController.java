@@ -8,15 +8,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+@CrossOrigin(origins = "http://localhost:3000" )
 
 @Controller
-@RequestMapping
+@RequestMapping ("/api/especialidades")
 public class EspecialidadeController {
 
     @Autowired
     EspecialidadeService especialidadeService;
 
-    @GetMapping("/api/especialidade")
+    @GetMapping("/{idEspecialidade}")
     public ResponseEntity<Especialidade> findById(
             @PathVariable("idEspecialidade") Long idEspecialidade
     ) {
@@ -50,13 +51,13 @@ public class EspecialidadeController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/status/{idEspecialidade}")
+    @PutMapping("/disable/{idEspecialidade}")
     public ResponseEntity<?> updateStatus(
             @RequestBody Especialidade especialidade,
             @PathVariable Long idEspecialidade
     ){
         try {
-            this.especialidadeService.update(idEspecialidade, especialidade);
+            this.especialidadeService.updateStatus(idEspecialidade, especialidade);
             return ResponseEntity.ok().body("Especialidade desativada com sucesso!");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

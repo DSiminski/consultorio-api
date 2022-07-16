@@ -15,10 +15,9 @@ import java.time.LocalDateTime;
 public interface SecretariaRepository extends JpaRepository<Secretaria, Long> {
     @Modifying
     @Query("UPDATE Secretaria secretaria " +
-    "SET secretaria.excluido = :dataExcluido " +
+    "SET secretaria.ativo = false " +
     "WHERE secretaria.id = :secretaria")
     public void updateStatus(
-            @Param("dataExcluido") LocalDateTime dataExcluido,
             @Param("secretaria")Long idSecretaria);
 
 }

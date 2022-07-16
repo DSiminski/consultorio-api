@@ -41,7 +41,7 @@ public class MedicoService {
     @Transactional
     public void updateStatus(Long id, Medico medico){
         if (id == medico.getId()) {
-            this.medicoRepository.updateStatus(LocalDateTime.now(), medico.getId());
+            this.medicoRepository.updateStatus( medico.getId());
         }
         else {
             throw new RuntimeException();

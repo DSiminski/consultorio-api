@@ -32,13 +32,13 @@ public abstract class Pessoa extends AbstractEntity {
 
     @Getter
     @Setter
-    @Column(name = "cep",nullable = false)
-    private String cep;
+    @Column(name = "telefone",nullable = false)
+    private String telefone;
 
     @Getter
     @Setter
-    @Column(name = "telefone",nullable = false)
-    private String telefone;
+    @Column(name = "celular",nullable = false)
+    private String celular;
 
     @Getter
     @Setter

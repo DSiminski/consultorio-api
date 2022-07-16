@@ -64,7 +64,7 @@ public class EspecialidadeService {
     @Transactional
     public void updateStatus(Long id, Especialidade especialidade){
         if (id == especialidade.getId()) {
-            this.especialidadeRepository.updateStatus(LocalDateTime.now(), especialidade.getId());
+            this.especialidadeRepository.updateStatus(especialidade.getId());
         }
         else {
             throw new RuntimeException();

@@ -17,13 +17,19 @@ public class Historico extends AbstractEntity{
     @Setter
     @JoinColumn(name = "id_agenda")
     @ManyToOne
-    private Agendamento agenda;
+    private Agendamento agendamento;
 
     @Getter
     @Setter
     @JoinColumn(name = "id_paciente")
     @ManyToOne
     private Paciente paciente;
+
+    @Getter
+    @Setter
+    @JoinColumn(name = "id_medico")
+    @ManyToOne
+    private Medico medico;
 
     @Getter
     @Setter
@@ -44,7 +50,7 @@ public class Historico extends AbstractEntity{
 
     @Getter
     @Setter
-    @Column(name = "observacao", nullable = true, length =100, unique = true)
+    @Column(name = "observacao", nullable = true, length =100)
     private String observacao;
 
 

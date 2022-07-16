@@ -17,18 +17,14 @@ public class HistoricoService {
     public HistoricoRepository historicoRepository;
 
     public void createHistorico(Agendamento agendamento, StatusAgendamento statusAgendamento,
-                                LocalDateTime data, Paciente paciente, Secretaria secretaria, String obs) {
-        Historico historico = new Historico(agendamento, paciente, secretaria, statusAgendamento, data, obs);
+                                LocalDateTime data, Paciente paciente, Secretaria secretaria, Medico medico) {
+        Historico historico = new Historico(agendamento, paciente, medico, secretaria, statusAgendamento, data, "");
+        historico.setAtivo(true);
         this.insert(historico);
     }
 
     public void insert(Historico historico) {
-        this.validarInsert(historico);
         this.saveTransaction(historico);
-    }
-
-    public void validarInsert(Historico historico) {
-
     }
 
     @Transactional

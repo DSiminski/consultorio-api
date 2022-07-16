@@ -14,9 +14,8 @@ public interface HistoricoRepository extends JpaRepository<Historico, Long> {
 
     @Modifying
     @Query("UPDATE Historico historico " +
-            "SET historico.excluido = :dataExcluido " +
-            "WHERE historico.id = :idHistorico")
+            "SET historico.ativo = false " +
+            "WHERE historico.id = :historico")
     public void updateStatus(
-            @Param("dataExcuido") LocalDateTime dataExcuido,
             @Param("historico") Long idHistorico);
 }

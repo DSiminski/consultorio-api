@@ -9,32 +9,29 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
-@ToString
 
+@Table(schema = "public", name = "agendamentos" )
 public class Agendamento extends AbstractEntity {
 
-    @Getter
-    @Setter
+    @Getter @Setter
     @JoinColumn(name = "id_paciente")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Paciente paciente;
 
-    @Getter
-    @Setter
-    @JoinColumn(name = "id_medico)")
-    @ManyToOne
+    @Getter @Setter
+    @JoinColumn(name = "id_secretaria")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Secretaria secretaria;
+
+    @Getter @Setter
+    @JoinColumn(name = "id_medico")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Medico medico;
 
     @Getter
     @Setter
-    @JoinColumn(name = "id_secretaria")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Secretaria secretaria;
-
-    @Getter
-    @Setter
     @Enumerated(EnumType.STRING)
-    @Column(name = "satusAgendamento", nullable = false)
+    @Column(name = "statusAgendamento", nullable = false)
     private StatusAgendamento statusAgendamento;
 
     @Getter

@@ -17,14 +17,14 @@ public class Paciente extends Pessoa {
 
     @Getter
     @Setter
-    @JoinColumn(name = "id_paciente")
+    @JoinColumn(name = "id_convenio")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Convenio convenio;
 
     @Getter
     @Setter
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipoAgendamento", nullable = false)
+    @Column(name = "tipoAgendamento", nullable = true)
     private TipoAtendimento tipoAtendimento;
 
     @Getter
@@ -34,7 +34,7 @@ public class Paciente extends Pessoa {
 
     @Getter
     @Setter
-    @Column(name = "dataVencimento", nullable = false)
+    @Column(name = "dataVencimento", nullable = true)
     private LocalDateTime dataVencimento;
 
 

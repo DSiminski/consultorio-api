@@ -1,12 +1,11 @@
 package br.com.consultorio.entity;
-
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 @MappedSuperclass
+@NoArgsConstructor
 public abstract class AbstractEntity {
 
     @Id
@@ -15,12 +14,21 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
+    @Getter
+    @Setter
     @Column(name = "cadastro", nullable = false)
     private LocalDateTime cadastro;
-    @Column(name = "atualizado", nullable = false)
+
+    @Getter
+    @Setter
+    @Column(name = "atualizado")
     private LocalDateTime atualizado;
-    @Column(name = "excluido", nullable = false)
-    private LocalDateTime excluido;
+
+    @Getter
+    @Setter
+    @Column(name = "ativo", nullable = false)
+    private boolean ativo;
 
      @PrePersist
      public void atualizarDataCadastro() {

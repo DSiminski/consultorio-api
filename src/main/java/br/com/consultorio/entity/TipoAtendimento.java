@@ -1,7 +1,7 @@
 package br.com.consultorio.entity;
 
 public enum  TipoAtendimento {
-        plano("Plano"),
+        particular("Particular"),
         convenio("Convenio");
 
 

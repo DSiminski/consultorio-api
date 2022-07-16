@@ -1,20 +1,20 @@
 package br.com.consultorio.controller;
 
 import br.com.consultorio.entity.Historico;
-import br.com.consultorio.entity.Medico;
 import br.com.consultorio.service.HistoricoService;
-import br.com.consultorio.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+@CrossOrigin(origins = "http://localhost:3000" )
 @Controller
 @RequestMapping("/api/historicos")
 public class HistoricoController {
     @Autowired
     HistoricoService historicoService;
+
     @GetMapping("/{idHistorico}")
     public ResponseEntity<Historico> findById(
             @PathVariable("idHistorico") Long idHistorico
